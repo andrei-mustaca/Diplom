@@ -1,0 +1,103 @@
+@model Services.ViewModel.LoginViewModel
+
+@{
+    ViewData["Title"] = "Вход в систему";
+}
+
+<div class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-icon">🔐</div>
+                <h1 class="login-title">Вход в систему</h1>
+                <p class="login-subtitle">
+                    Этот раздел предназначен для входа работников в систему.
+                    Вы можете использовать email или имя пользователя для входа.
+                    Обязательно выберите вашу роль.
+                </p>
+            </div>
+
+            <form asp-action="Login" method="post" class="login-form">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <div class="form-group">
+                    <label asp-for="Login" class="form-label">
+                        <span class="label-icon">👤</span>
+                        Логин или Email
+                    </label>
+                    <input asp-for="Login" 
+                           class="form-input" 
+                           placeholder="Введите email или имя пользователя"
+                           autocomplete="username" />
+                    <span asp-validation-for="Login" class="validation-error"></span>
+                    <small class="form-hint">
+                        Пример: admin@expressgas.ru или Администратор Системы
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label">
+                        <span class="label-icon">🔒</span>
+                        Пароль
+                    </label>
+                    <input asp-for="Password" 
+                           class="form-input" 
+                           placeholder="Введите пароль"
+                           type="password"
+                           autocomplete="current-password" />
+                    <span asp-validation-for="Password" class="validation-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SelectedRole" class="form-label">
+                        <span class="label-icon">👔</span>
+                        Выберите роль
+                    </label>
+                    <select asp-for="SelectedRole" 
+                            class="form-select"
+                            asp-items="@(new SelectList(ViewBag.Roles, "Value", "Text"))">
+                        <option value="">-- Выберите вашу роль --</option>
+                    </select>
+                    <span asp-validation-for="SelectedRole" class="validation-error"></span>
+                </div>
+
+                
+
+                <button type="submit" class="btn-login">
+                    🚀 Войти в систему
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <div class="test-credentials">
+                    <h4>📝 Тестовые аккаунты:</h4>
+                    <div class="credential-item">
+                        <span class="role-badge admin">Админ</span>
+                        <span>admin@expressgas.ru / password123</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="role-badge dispatcher">Диспетчер</span>
+                        <span>dispatcher@expressgas.ru / password123</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="role-badge worker">Рабочий</span>
+                        <span>worker@expressgas.ru / password123</span>
+                    </div>
+                    <div class="credential-note">
+                        ⚠️ При входе выберите соответствующую роль из выпадающего списка
+                    </div>
+                </div>
+                <p class="login-note">Для получения доступа обратитесь к администратору</p>
+                <a asp-controller="Home" asp-action="WorkerEntry" class="btn-back">
+                    ← Вернуться на страницу для сотрудников
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

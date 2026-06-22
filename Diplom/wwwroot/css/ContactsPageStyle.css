@@ -1,0 +1,169 @@
+/* ====== Страница Контакты ====== */
+
+.contacts-hero {
+    padding: 5rem 1rem;
+    background: linear-gradient(135deg, #1e1e2f 0%, #252540 100%);
+    text-align: center;
+    border-bottom: 1px solid #3a3a5c;
+}
+.contacts-hero h1 {
+    font-size: 3rem;
+    color: #f5a442;
+    margin-bottom: 1rem;
+}
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #b0b0c0;
+    font-size: 1.2rem;
+}
+
+/* Контактная информация */
+.contact-info-section {
+    padding: 5rem 1rem;
+    background: #1e1e2f;
+}
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.info-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    flex: 1 1 250px;
+    transition: 0.3s;
+}
+.info-card:hover {
+    border-color: #f5a442;
+    transform: translateY(-5px);
+}
+.info-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.info-card h3 {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+.info-card p {
+    color: #b0b0c0;
+}
+.info-card a {
+    color: #f5a442;
+    text-decoration: none;
+}
+.info-card a:hover {
+    text-decoration: underline;
+}
+.info-note {
+    font-size: 0.85rem;
+    color: #7a7a9a;
+    margin-top: 0.3rem;
+}
+
+/* Карта */
+.map-section {
+    padding: 5rem 1rem;
+    background: #252540;
+}
+.map-section h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+}
+.map-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #3a3a5c;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Форма */
+.feedback-section {
+    padding: 5rem 1rem;
+    background: #1e1e2f;
+}
+.feedback-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 3rem;
+}
+.feedback-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.feedback-form label {
+    color: #e0e0e0;
+    margin-bottom: 0.3rem;
+    display: block;
+    font-weight: 500;
+}
+.feedback-form .form-control {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    color: white;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+}
+.feedback-form .form-control::placeholder {
+    color: #7a7a9a;
+}
+.feedback-form .form-control:focus {
+    border-color: #f5a442;
+    outline: none;
+    box-shadow: none;
+}
+.feedback-form .btn-hero {
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem auto 0;
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    background: #f5a442;
+    color: #1e1e2f;
+    border: 2px solid #f5a442;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.feedback-form .btn-hero:hover {
+    background: transparent;
+    color: #f5a442;
+}
+
+/* Alert-success */
+.alert-success {
+    background: #2a5a3a;
+    color: #c3e6cb;
+    border: 1px solid #3c7a4a;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Анимации */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .contacts-hero h1 { font-size: 2.2rem; }
+}

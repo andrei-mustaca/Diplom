@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Вход для сотрудников";
+}
+
+<div class="worker-entry-page">
+    <div class="entry-hero">
+        <div class="entry-icon">👷</div>
+        <h1 class="entry-title">Раздел для сотрудников</h1>
+        <p class="entry-description">
+            Этот раздел предназначен для входа работников в систему управления выездными бригадами.
+            Здесь вы можете управлять заявками, распределять задачи и отслеживать выполнение работ.
+        </p>
+        
+        <div class="entry-info-grid">
+            <div class="entry-info-card">
+                <div class="info-card-icon">🔧</div>
+                <h3>Для рабочих</h3>
+                <p>Просмотр назначенных задач, отметка о выполнении, связь с диспетчером</p>
+            </div>
+            <div class="entry-info-card">
+                <div class="info-card-icon">📋</div>
+                <h3>Для диспетчеров</h3>
+                <p>Управление заявками, назначение бригад, контроль выполнения</p>
+            </div>
+            <div class="entry-info-card">
+                <div class="info-card-icon">⚙️</div>
+                <h3>Для администраторов</h3>
+                <p>Управление пользователями, настройка системы, полный доступ</p>
+            </div>
+        </div>
+
+        <div class="entry-actions">
+            <a asp-controller="Home" asp-action="Login" class="btn-login-entry">
+                🔐 Войти в систему
+            </a>
+            <a asp-controller="Home" asp-action="Works" class="btn-services-entry">
+                🛠️ Перейти к услугам
+            </a>
+        </div>
+    </div>
+</div>

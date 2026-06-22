@@ -1,0 +1,264 @@
+/* ====== Страница "О нас" ====== */
+
+/* Hero */
+.about-hero {
+    padding: 5rem 1rem;
+    background: linear-gradient(135deg, #1e1e2f 0%, #252540 100%);
+    text-align: center;
+    border-bottom: 1px solid #3a3a5c;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    color: #f5a442;
+    margin-bottom: 1rem;
+}
+
+.hero-description {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: #b0b0c0;
+    line-height: 1.7;
+}
+
+/* Общие заголовки секций */
+.history-section,
+.mission-section,
+.facts-section,
+.team-section {
+    padding: 5rem 1rem;
+}
+
+.history-section h2,
+.mission-section h2,
+.facts-section h2,
+.team-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.history-section h2::after,
+.mission-section h2::after,
+.facts-section h2::after,
+.team-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #f5a442;
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+}
+
+/* История */
+.history-section {
+    background-color: #1e1e2f;
+}
+
+.history-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.history-text {
+    flex: 1 1 500px;
+    color: #b0b0c0;
+    line-height: 1.7;
+}
+
+.history-text strong {
+    color: #f5a442;
+}
+
+.history-stats {
+    flex: 1 1 300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.stat-item {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    min-width: 130px;
+    flex: 1 1 130px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f5a442;
+    display: block;
+}
+
+.stat-label {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+/* Миссия и ценности */
+.mission-section {
+    background-color: #252540;
+}
+
+.mission-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.mission-card {
+    background: #1e1e2f;
+    border: 1px solid #3a3a5c;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    flex: 1 1 250px;
+    transition: 0.3s;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    border-color: #f5a442;
+}
+
+.mission-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.mission-card h3 {
+    color: #f5a442;
+    margin-bottom: 0.8rem;
+}
+
+.mission-card p {
+    color: #b0b0c0;
+}
+
+/* Факты */
+.facts-section {
+    background-color: #1e1e2f;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.fact-item {
+    background: #252540;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #3a3a5c;
+}
+
+.fact-number {
+    font-size: 2rem;
+    color: #f5a442;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.fact-item p {
+    color: #b0b0c0;
+    line-height: 1.6;
+}
+
+/* Команда */
+.team-section {
+    background-color: #252540;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.team-member {
+    text-align: center;
+    flex: 1 1 180px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background: #3a3a5c;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f5a442"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>');
+    background-size: 60%;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    background-color: #2b2b45;
+    border: 2px solid #3a3a5c;
+}
+
+.team-member h4 {
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+}
+
+.team-member p {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+/* Анимации */
+.animate-fadeInUp {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.2rem;
+    }
+    .history-content {
+        flex-direction: column;
+    }
+    .team-grid {
+        gap: 1.5rem;
+    }
+}

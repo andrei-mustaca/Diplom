@@ -1,0 +1,120 @@
+@using Domain.Enums
+@model List<Services.ViewModel.WorkerTaskViewModel>
+
+@{
+ViewData["Title"] = "Мои задачи на сегодня";
+}
+
+<div class="worker-tasks-page">
+    <div class="page-header">
+        <h1 class="page-title">
+            <span class="title-icon">📋</span>
+            Мои задачи на сегодня
+        </h1>
+        <p class="page-subtitle">
+            @DateTime.Now.ToString("dd MMMM yyyy") |
+            <span class="task-count">@Model.Count задач(и)</span>
+        </p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+    <div class="alert alert-success alert-custom">
+        @TempData["SuccessMessage"]
+    </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+    <div class="alert alert-danger alert-custom">
+        @TempData["ErrorMessage"]
+    </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+    <div class="tasks-list">
+        @foreach (var task in Model)
+        {
+        <div class="task-card priority-@task.Priority.ToString().ToLower()">
+            <div class="task-status-indicator status-@GetStatusClass(task.Status)"></div>
+
+            <div class="task-content">
+                <div class="task-header">
+                    <div class="task-type">
+                        <span class="task-icon">🛠️</span>
+                        <h3>@task.WorkTypeName</h3>
+                    </div>
+                    <div class="task-badges">
+                                <span class="priority-badge priority-@task.Priority.ToString().ToLower()">
+                                    @GetPriorityText(task.Priority)
+                                </span>
+                        <span class="status-badge status-@GetStatusClass(task.Status)">
+                                    @task.Status
+                                </span>
+                    </div>
+                </div>
+
+                <div class="task-description">
+                    <p>@task.DescriptionRequest</p>
+                </div>
+
+                <div class="task-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">📅</span>
+                        <span>Назначено: @task.AssignedDate.ToString("HH:mm")</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">⏱️</span>
+                        <span>План: @task.StandartDuration мин.</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📱</span>
+                        <span>@task.PhoneClient</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-actions">
+                <a asp-action="TaskDetail" asp-route-id="@task.AssignmentId" class="btn btn-view">
+                    📋 Подробнее
+                </a>
+            </div>
+        </div>
+        }
+    </div>
+    }
+    else
+    {
+    <div class="empty-state">
+        <div class="empty-icon">🎉</div>
+        <h3>Нет задач на сегодня</h3>
+        <p>У вас нет активных задач на сегодня. Отдохните пока!</p>
+    </div>
+    }
+</div>
+
+@functions {
+string GetStatusClass(string status)
+{
+return status switch
+{
+"Назначена" => "assigned",
+"В работе" => "in-progress",
+"Завершена" => "completed",
+_ => "unknown"
+};
+}
+
+string GetPriorityText(Priority priority)
+{
+return priority switch
+{
+Priority.Low => "🟢 Низкий",
+Priority.Medium => "🟡 Средний",
+Priority.High => "🟠 Высокий",
+Priority.Critical => "🔴 Критический",
+_ => "⚪ Неизвестно"
+};
+}
+}

@@ -1,0 +1,195 @@
+@using Domain.Enums
+@model List<Services.ViewModel.WorkerInfoViewModel>
+
+@{
+ViewData["Title"] = "Бригады";
+}
+<link rel="stylesheet" href="css/WorksStyle.css"/>
+<div class="brigades-page">
+    <div class="page-header">
+        <h1 class="page-title">
+            <span class="title-icon">👷</span>
+            Бригады и работники
+        </h1>
+        <p class="page-subtitle">Просмотр загрузки и статистики работников</p>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+    <div class="workers-summary">
+        <div class="summary-card">
+            <span class="summary-value">@Model.Count</span>
+            <span class="summary-label">Всего работников</span>
+        </div>
+        <div class="summary-card">
+            <span class="summary-value">@Model.Count(w => w.IsAvailable)</span>
+            <span class="summary-label">Доступно</span>
+        </div>
+        <div class="summary-card">
+            <span class="summary-value">@Model.Count(w => !w.IsAvailable)</span>
+            <span class="summary-label">Занято</span>
+        </div>
+        <div class="summary-card">
+            <span class="summary-value">@Model.Sum(w => w.TodayInProgressCount)</span>
+            <span class="summary-label">Заявок в работе</span>
+        </div>
+    </div>
+
+    <div class="workers-grid">
+        @foreach (var worker in Model)
+        {
+        <div class="worker-card @(worker.IsAvailable ? "worker-available" : "worker-busy")">
+            <div class="worker-status-indicator @(worker.IsAvailable ? "status-free" : "status-occupied")"></div>
+
+            <div class="worker-header">
+                <div class="worker-avatar">
+                    @worker.FullName.Substring(0, 1).ToUpper()
+                </div>
+                <div class="worker-name-info">
+                    <h3 class="worker-name">@worker.FullName</h3>
+                    <span class="worker-status-text">
+                                @if (worker.IsAvailable)
+                        {
+                        <span class="text-success">✅ Доступен</span>
+                        }
+                        else
+                        {
+                        <span class="text-danger">🔴 Занят</span>
+                        }
+                            </span>
+                </div>
+            </div>
+
+            <div class="worker-body">
+                <div class="worker-contacts">
+                    <div class="contact-row">
+                        <span>📱 @worker.PhoneNumber</span>
+                    </div>
+                    <div class="contact-row">
+                        <span>📧 @worker.Email</span>
+                    </div>
+                </div>
+
+                <div class="worker-load">
+                    <div class="load-header">
+                        <span>Загрузка сегодня:</span>
+                        <strong>@worker.WorkloadPercentage.ToString("F0")%</strong>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar @GetProgressBarClass(worker.WorkloadPercentage)"
+                             style="width: @worker.WorkloadPercentage%">
+                        </div>
+                    </div>
+                    <small>@worker.TodayAssignedMinutes мин. из 480 мин. (8 часов)</small>
+                </div>
+
+                <div class="worker-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">📋 Назначено сегодня:</span>
+                        <span class="stat-value">@worker.TodayAssignedCount заявок</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">✅ Завершено сегодня:</span>
+                        <span class="stat-value">@worker.TodayCompletedCount</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">⏰ Вовремя:</span>
+                        <span class="stat-value text-success">@worker.TodayCompletedOnTime</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">⚠️ С опозданием:</span>
+                        <span class="stat-value text-danger">@worker.TodayCompletedLate</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🔄 В работе:</span>
+                        <span class="stat-value text-primary">@worker.TodayInProgressCount</span>
+                    </div>
+                </div>
+
+                @if (worker.CurrentTasks.Any())
+                {
+                <div class="current-tasks">
+                    <h5>📋 Текущие задачи:</h5>
+                    @foreach (var task in worker.CurrentTasks.Take(3))
+                    {
+                    <div class="task-item priority-@task.Priority.ToString().ToLower()">
+                        <div class="task-header">
+                            <span class="task-type">🛠️ @task.WorkTypeName</span>
+                            <span class="task-priority">@GetPriorityEmoji(task.Priority)</span>
+                        </div>
+                        <p class="task-description">
+                            @if (task.Description.Length > 50)
+                            {
+                                @task.Description.Substring(0, 50)
+                                <text>...</text>
+                            }
+                            else
+                            {
+                                @task.Description
+                            }
+                        </p>
+                        <small class="task-time">
+                            ⏱️ Назначено: @task.AssignedDate.ToString("HH:mm") |
+                            План: @task.StandartDuration мин.
+                        </small>
+                    </div>
+                    }
+                    @if (worker.CurrentTasks.Count > 3)
+                    {
+                    <a asp-action="Details" asp-route-id="@worker.UserId" class="btn-more">
+                        + еще @(worker.CurrentTasks.Count - 3) задач
+                    </a>
+                    }
+                </div>
+                }
+            </div>
+
+            <div class="worker-footer">
+                <a asp-action="Details" asp-route-id="@worker.UserId" class="btn btn-details">
+                    📊 Подробная статистика
+                </a>
+                <span class="remaining-time">
+                            @if (worker.IsAvailable)
+                    {
+                    <span>⏰ Свободно: @worker.RemainingMinutes мин.</span>
+                    }
+                    else
+                    {
+                    <span class="text-danger">⚠️ Перегрузка: @Math.Abs(worker.RemainingMinutes) мин.</span>
+                    }
+                        </span>
+            </div>
+        </div>
+        }
+    </div>
+    }
+    else
+    {
+    <div class="empty-state">
+        <div class="empty-icon">👻</div>
+        <h3>Нет работников</h3>
+        <p>В системе пока нет зарегистрированных работников</p>
+    </div>
+    }
+</div>
+
+@functions {
+string GetProgressBarClass(double percentage)
+{
+if (percentage < 50) return "bg-success";
+if (percentage < 80) return "bg-warning";
+return "bg-danger";
+}
+
+string GetPriorityEmoji(Priority priority)
+{
+return priority switch
+{
+Priority.Low => "🟢",
+Priority.Medium => "🟡",
+Priority.High => "🟠",
+Priority.Critical => "🔴",
+_ => "⚪"
+};
+}
+}

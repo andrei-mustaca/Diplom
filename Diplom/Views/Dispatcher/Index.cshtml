@@ -1,0 +1,200 @@
+@model List<Services.ViewModel.NewRequestViewModel>
+
+@{
+    ViewData["Title"] = "Новые заявки";
+}
+
+<div class="dispatcher-page">
+    <div class="page-header">
+        <h1 class="page-title">
+            <span class="title-icon">📋</span>
+            Новые заявки
+        </h1>
+        <p class="page-subtitle">Управление новыми заявками от клиентов</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-custom">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-custom">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="requests-grid">
+            @foreach (var request in Model)
+            {
+                <div class="request-card priority-@request.Priority.ToString().ToLower()">
+                    <div class="request-header">
+                        <div class="request-type">
+                            @if (request.IsConsultation)
+                            {
+                                <span class="badge badge-consultation">💬 Консультация</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-visit">🚐 Выезд</span>
+                            }
+                        </div>
+                        <div class="request-priority">
+                            <span class="priority-badge priority-@request.Priority.ToString().ToLower()">
+                                @{
+                                    var priorityText = request.Priority switch
+                                    {
+                                        Domain.Enums.Priority.Low => "🟢 Низкий",
+                                        Domain.Enums.Priority.Medium => "🟡 Средний",
+                                        Domain.Enums.Priority.High => "🟠 Высокий",
+                                        Domain.Enums.Priority.Critical => "🔴 Критический",
+                                        _ => "⚪ Неизвестно"
+                                    };
+                                }
+                                @priorityText
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="request-body">
+                        <div class="request-service">
+                            <span class="service-label">🛠️ Услуга:</span>
+                            <strong>@request.WorkTypeName</strong>
+                        </div>
+                        
+                        <div class="request-time">
+                            <span class="time-label">⏱️ Время:</span>
+                            <strong>@request.StandartDuration мин.</strong>
+                        </div>
+
+                        <div class="request-description">
+                            <p>@request.DescriptionRequest</p>
+                        </div>
+
+                        <div class="request-contacts">
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <span>@request.PhoneClient</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <span>@request.EmailClient</span>
+                            </div>
+                        </div>
+
+                        <div class="request-date">
+                            <span class="date-icon">📅</span>
+                            <span>@request.RequestDate.ToString("dd.MM.yyyy HH:mm")</span>
+                        </div>
+                    </div>
+
+                    <div class="request-actions">
+                        @if (request.CanApprove)
+                        {
+                            <form asp-action="ApproveConsultation" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="requestId" value="@request.RequestId" />
+                                <button type="submit" class="btn btn-approve">
+                                    ✅ Одобрить консультацию
+                                </button>
+                            </form>
+                        }
+                        
+                        @if (request.NeedAssignment)
+                        {
+                            <button type="button" 
+                                    class="btn btn-assign" 
+                                    onclick="loadWorkers('@request.RequestId')"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#workersModal">
+                                👷 Распределить бригаду
+                            </button>
+                        }
+
+                        <button type="button" 
+                                class="btn btn-reject" 
+                                onclick="showRejectForm('@request.RequestId')"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#rejectModal">
+                            ❌ Отклонить
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <h3>Новых заявок нет</h3>
+            <p>Все заявки обработаны</p>
+        </div>
+    }
+</div>
+
+<!-- Модальное окно для отклонения заявки -->
+<div class="modal fade" id="rejectModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">🚫 Отклонить заявку</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="RejectRequest" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="requestId" id="rejectRequestId" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Причина отклонения:</label>
+                        <textarea name="comment" class="form-control" rows="3" 
+                                  placeholder="Укажите причину отклонения заявки..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-danger">Отклонить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для выбора работника -->
+<div class="modal fade" id="workersModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">👷 Выбор работника</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="workersList">
+                <!-- Загружается через AJAX -->
+                <div class="text-center">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Загрузка...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function loadWorkers(requestId) {
+            $.get('/Dispatcher/GetWorkers', { requestId: requestId }, function(data) {
+                $('#workersList').html(data);
+            });
+        }
+
+        function showRejectForm(requestId) {
+            $('#rejectRequestId').val(requestId);
+        }
+    </script>
+}

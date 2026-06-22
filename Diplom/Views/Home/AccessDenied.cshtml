@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Доступ запрещен";
+}
+
+<div class="access-denied-page">
+    <div class="access-denied-card">
+        <div class="denied-icon">🚫</div>
+        <h1 class="denied-title">Доступ запрещен</h1>
+        <p class="denied-message">
+            У вас недостаточно прав для доступа к этой странице.
+        </p>
+        
+        <div class="denied-info">
+            <p>Возможные причины:</p>
+            <ul class="denied-reasons">
+                <li>Вы вошли под неподходящей ролью</li>
+                <li>Ваша сессия истекла</li>
+                <li>Вы пытаетесь получить доступ к странице администратора</li>
+            </ul>
+        </div>
+
+        <div class="denied-actions">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Home" asp-action="MainPage" class="btn-home">
+                    🏠 На главную
+                </a>
+                
+                <form asp-controller="Home" asp-action="Logout" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn-logout">
+                        🔐 Войти под другой ролью
+                    </button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Login" class="btn-login">
+                    🔐 Войти в систему
+                </a>
+                <a asp-controller="Home" asp-action="MainPage" class="btn-home">
+                    🏠 На главную
+                </a>
+            }
+        </div>
+    </div>
+</div>
+

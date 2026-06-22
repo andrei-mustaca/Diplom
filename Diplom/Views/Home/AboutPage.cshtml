@@ -1,0 +1,182 @@
+@{
+ViewData["Title"] = "О нас";
+Layout = "_Layout";
+}
+<link rel="stylesheet" href="~/css/AboutPageStyle.css" />
+
+<main class="about-page">
+
+    <!-- HERO -->
+    <section class="about-hero">
+        <div class="container text-center animate-fadeInUp">
+            <h1>ЭкспрессГаз</h1>
+            <p class="hero-description">
+                Современная газовая служба, основанная на интеллектуальной системе распределения бригад.
+                Мы делаем газовые услуги доступными и безопасными 24/7.
+            </p>
+        </div>
+    </section>
+
+    <!-- ИСТОРИЯ КОМПАНИИ -->
+    <section class="history-section reveal">
+        <div class="container">
+            <h2>Наша история</h2>
+            <div class="history-content">
+                <div class="history-text">
+                    <p>
+                        Компания <strong>ЭкспрессГаз</strong> основана в 2018 году группой инженеров-газовиков,
+                        поставивших цель — сделать аварийный и плановый выезд газовых бригад максимально быстрым.
+                        С первых дней мы внедрили собственную информационную систему, которая автоматически
+                        определяет ближайшую к клиенту бригаду, учитывая её загруженность и специализацию.
+                    </p>
+                    <p>
+                        За 6 лет мы расширили парк спецтехники, обучили более 50 сертифицированных мастеров
+                        и выполнили свыше 12 000 заявок. Сегодня «ЭкспрессГаз» — это гарантия того, что
+                        мастер прибудет к вам в среднем за 30 минут.
+                    </p>
+                </div>
+                <div class="history-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="6">0</span>
+                        <span class="stat-label">лет на рынке</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="12000">0</span>
+                        <span class="stat-label">выполненных заявок</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-label">специалистов</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- МИССИЯ И ЦЕННОСТИ -->
+    <section class="mission-section reveal">
+        <div class="container">
+            <h2>Миссия и ценности</h2>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Скорость</h3>
+                    <p>Каждая минута на счету, когда речь идёт о газе. Наш алгоритм распределения бригад гарантирует минимальное время реакции.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🛡️</div>
+                    <h3>Безопасность</h3>
+                    <p>Все работы проводятся строго по нормативам. Мастера имеют аттестацию и используют сертифицированное оборудование.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🤝</div>
+                    <h3>Открытость</h3>
+                    <p>Клиент всегда знает, какая бригада назначена, где она находится и когда прибудет — благодаря прозрачной системе мониторинга.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ИНТЕРЕСНЫЕ ФАКТЫ О ГАЗЕ -->
+    <section class="facts-section reveal">
+        <div class="container">
+            <h2>Интересные факты о газе</h2>
+            <div class="facts-grid">
+                <div class="fact-item">
+                    <div class="fact-number">01</div>
+                    <p>Природный газ не имеет запаха. Характерный «запах газа» придаёт одорант (меркаптан), добавляемый специально для обнаружения утечек.</p>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-number">02</div>
+                    <p>Первые газовые фонари появились в Лондоне в 1807 году. Уже через 30 лет газовое освещение использовалось по всей Европе.</p>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-number">03</div>
+                    <p>Россия обладает крупнейшими в мире запасами природного газа — около 20% от мировых доказанных резервов.</p>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-number">04</div>
+                    <p>Газовое оборудование может служить 15–20 лет при правильной эксплуатации и регулярном техобслуживании.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НАША КОМАНДА -->
+    <section class="team-section reveal">
+        <div class="container">
+            <h2>Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar"></div>
+                    <h4>Алексей Иванов</h4>
+                    <p>Главный инженер</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar"></div>
+                    <h4>Мария Соколова</h4>
+                    <p>Диспетчер-координатор</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar"></div>
+                    <h4>Дмитрий Ковалёв</h4>
+                    <p>Старший мастер</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar"></div>
+                    <h4>Елена Петрова</h4>
+                    <p>Специалист по безопасности</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+@section Scripts {
+<script>
+    // Анимация появления при скролле
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Анимация счётчиков
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    const speed = 200; // чем меньше, тем быстрее
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-count');
+        const updateCount = () => {
+            const current = +counter.innerText;
+            const inc = Math.ceil(target / speed);
+            if (current < target) {
+                counter.innerText = current + inc;
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        };
+        updateCount();
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+</script>
+}

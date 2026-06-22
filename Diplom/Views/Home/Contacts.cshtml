@@ -1,0 +1,109 @@
+@model Domain.Models.Complaint
+@{
+ViewData["Title"] = "Контакты";
+Layout = "_Layout";
+}
+<link rel="stylesheet" href="~/css/ContactsPageStyle.css" />
+
+<main class="contacts-page">
+
+    <!-- Заголовок -->
+    <section class="contacts-hero reveal">
+        <div class="container text-center">
+            <h1>Контакты</h1>
+            <p class="hero-description">Свяжитесь с нами любым удобным способом или оставьте обращение онлайн</p>
+        </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="contact-info-section reveal">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>Адрес</h3>
+                    <p>г. Тирасполь, ул. Газовая, 15</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h3>Телефон</h3>
+                    <p><a href="tel:+37353312345">+373 (533) 1-23-45</a></p>
+                    <p class="info-note">круглосуточно</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@expressgaz.md">info@expressgaz.md</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Встроенная карта (Яндекс или Google) -->
+    <section class="map-section reveal">
+        <div class="container">
+            <h2>Мы на карте</h2>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=...ваша_ссылка_на_карту_Тирасполя..."
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма обратной связи -->
+    <section class="feedback-section reveal" id="feedback">
+        <div class="container">
+            <h2>Форма обратной связи</h2>
+            @if (TempData["SuccessMessage"] != null)
+            {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+            }
+            <form asp-action="Contacts" method="post" class="feedback-form">
+                @Html.AntiForgeryToken()
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="Name">Ваше имя</label>
+                        <input asp-for="Name" class="form-control" placeholder="Иван Иванов" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="PhoneNumber">Телефон</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="+373 (XXX) XX-XXX" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="example@mail.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Description">Описание проблемы или вопроса</label>
+                        <textarea asp-for="Description" class="form-control" rows="5" placeholder="Опишите ситуацию..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-hero">Отправить обращение</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+@section Scripts {
+<script>
+    // Анимация появления
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+</script>
+<partial name="_ValidationScriptsPartial" />
+}

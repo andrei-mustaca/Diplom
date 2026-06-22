@@ -1,0 +1,83 @@
+@model List<Services.ViewModel.WorkerAssignmentViewModel>
+
+<div class="workers-list">
+    <h6 class="workers-title">Доступные работники</h6>
+    
+    @if (Model.Any(w => w.IsAvailable))
+    {
+        <div class="workers-grid">
+            @foreach (var worker in Model.Where(w => w.IsAvailable))
+            {
+                <div class="worker-card @(worker.TodayAssignedMinutes == 0 ? "worker-free" : "")">
+                    <div class="worker-header">
+                        <h5>👷 @worker.FullName</h5>
+                        <span class="badge bg-success">Доступен</span>
+                    </div>
+                    
+                    <div class="worker-info">
+                        <div class="info-row">
+                            <span>📱 @worker.PhoneNumber</span>
+                        </div>
+                        <div class="info-row">
+                            <span>📋 Назначено сегодня: @worker.TodayAssignedCount заявок</span>
+                        </div>
+                        <div class="info-row">
+                            <span>⏱️ Занятость: @worker.TodayAssignedMinutes мин. из 480</span>
+                        </div>
+                        <div class="info-row">
+                            <span>⏰ Осталось: @worker.RemainingMinutes мин.</span>
+                        </div>
+                        <div class="info-row">
+                            <span>✅ Завершено: @worker.TodayCompletedCount 
+                            (вовремя: @worker.TodayCompletedOnTime, с опозданием: @worker.TodayCompletedLate)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="worker-progress">
+                        <div class="progress">
+                            <div class="progress-bar" 
+                                 style="width: @((double)worker.TodayAssignedMinutes / 480 * 100)%">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form asp-action="AssignWorker" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="requestId" value="@ViewBag.RequestId" />
+                        <input type="hidden" name="userId" value="@worker.UserId" />
+                        <button type="submit" class="btn btn-assign-worker">
+                            ✅ Назначить
+                        </button>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="no-workers">
+            <p>😔 Нет доступных работников на данный момент</p>
+        </div>
+    }
+    
+    @if (Model.Any(w => !w.IsAvailable))
+    {
+        <h6 class="workers-title mt-4">Занятые работники</h6>
+        <div class="workers-grid">
+            @foreach (var worker in Model.Where(w => !w.IsAvailable))
+            {
+                <div class="worker-card worker-busy">
+                    <div class="worker-header">
+                        <h5>👷 @worker.FullName</h5>
+                        <span class="badge bg-danger">Занят</span>
+                    </div>
+                    <div class="worker-info">
+                        <div class="info-row">
+                            <span>⏱️ Занятость: @worker.TodayAssignedMinutes мин.</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

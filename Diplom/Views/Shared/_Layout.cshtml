@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] – Система распределения бригад</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <!-- Название системы с иконкой -->
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="MainPage">
+                <span class="brand-icon">🚐</span>
+                <span class="brand-text">ЭкспрессГаз</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключить навигацию">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <!-- Основные разделы -->
+                <ul class="navbar-nav flex-grow-1">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <!-- Меню для авторизованных пользователей -->
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="AdminDashboard">
+                                    <span class="nav-icon">⚙️</span> Админ-панель
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span class="nav-icon">👥</span> Пользователи
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span class="nav-icon">📊</span> Отчеты
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span class="nav-icon">📋</span> Все заявки
+                                </a>
+                            </li>
+                        }
+                        
+                        @if (User.IsInRole("Dispatcher"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="DispatcherDashboard">
+                                    <span class="nav-icon">📋</span> Панель диспетчера
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Dispatcher" asp-action="Index">
+                                    <span class="nav-icon">📝</span> Все заявки
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Dispatcher" asp-action="Brigades">
+                                    <span class="nav-icon">👷</span> Бригады
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span class="nav-icon">📊</span> Статистика
+                                </a>
+                            </li>
+                        }
+                        
+                        @if (User.IsInRole("Worker"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="WorkerDashboard">
+                                    <span class="nav-icon">🔧</span> Моя панель
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Worker" asp-action="Tasks">
+                                    <span class="nav-icon">📋</span> Мои задачи
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span class="nav-icon">✅</span> Выполненные
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span class="nav-icon">📅</span> График
+                                </a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <!-- Меню для гостей (клиентов) -->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MainPage">
+                                <span class="nav-icon">🏠</span> Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Works">
+                                <span class="nav-icon">🛠️</span> Услуги
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutPage">
+                                <span class="nav-icon">ℹ️</span> О нас
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">
+                                <span class="nav-icon">📞</span> Контакты
+                            </a>
+                        </li>
+                    }
+                </ul>
+                
+                <!-- Блок входа/выхода -->
+                <ul class="navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" 
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="nav-icon">👤</span> @User.Identity.Name
+                                <span class="badge role-badge-nav ms-1">
+                                    @{
+                                        var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+                                        switch (role)
+                                        {
+                                            case "Administrator":
+                                                <text>👨‍💼 Админ</text>
+                                                break;
+                                            case "Dispatcher":
+                                                <text>📋 Диспетчер</text>
+                                                break;
+                                            case "Worker":
+                                                <text>🔧 Рабочий</text>
+                                                break;
+                                        }
+                                    }
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <span class="dropdown-item-text">
+                                        <small>📧 @User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value</small>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="dropdown-item-text">
+                                        <small>📱 @User.FindFirst("PhoneNumber")?.Value</small>
+                                    </span>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form asp-controller="Home" asp-action="Logout" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="dropdown-item logout-btn">
+                                            🚪 Выйти из системы
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary nav-login-btn" asp-controller="Home" asp-action="Login">
+                                <span class="nav-icon">🔐</span> Вход для сотрудников
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-year">© 2026</span>
+                <span class="footer-separator">|</span>
+                <span class="footer-text">🚐 Система распределения выездных бригад</span>
+            </div>
+            <div class="footer-right">
+                <a asp-area="" asp-controller="Home" asp-action="Contacts" class="footer-link">
+                    📞 Контакты
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Панель администратора";
+}
+
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <h1>⚙️ Панель администратора</h1>
+        <p class="welcome-text">Добро пожаловать, @ViewBag.UserName!</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <div class="card-icon">👥</div>
+            <h3>Управление пользователями</h3>
+            <p>Добавление, редактирование и удаление сотрудников</p>
+        </div>
+        <div class="dashboard-card">
+            <div class="card-icon">📊</div>
+            <h3>Статистика</h3>
+            <p>Просмотр отчетов и аналитики работы системы</p>
+        </div>
+        <div class="dashboard-card">
+            <div class="card-icon">⚙️</div>
+            <h3>Настройки системы</h3>
+            <p>Конфигурация параметров и справочников</p>
+        </div>
+    </div>
+</div>

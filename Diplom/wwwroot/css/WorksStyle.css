@@ -1,0 +1,272 @@
+/* === Страница услуг === */
+
+.services-page {
+    padding: 2rem 0;
+}
+
+/* Hero секция */
+.services-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #252540 0%, #1e1e2f 100%);
+    border-radius: 20px;
+    border: 1px solid #3a3a5c;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(245, 164, 66, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.services-title {
+    font-size: 2.5rem;
+    color: #f5a442;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.title-icon {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.services-subtitle {
+    color: #c2c2d1;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Сетка услуг */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Карточка услуги */
+.service-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(245, 164, 66, 0.2);
+    border-color: #f5a442;
+}
+
+.service-card-header {
+    padding: 2rem 1.5rem 1rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(245, 164, 66, 0.1) 0%, transparent 100%);
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.service-name {
+    color: #f5a442;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.service-card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.service-description {
+    color: #c2c2d1;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.service-details {
+    background: rgba(30, 30, 47, 0.5);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #9a9ab0;
+}
+
+.detail-icon {
+    font-size: 1.2rem;
+}
+
+.detail-text strong {
+    color: #f5a442;
+}
+
+.service-card-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #3a3a5c;
+    text-align: center;
+}
+
+.btn-order {
+    display: inline-block;
+    background: linear-gradient(135deg, #f5a442 0%, #f7c06b 100%);
+    color: #1e1e2f;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 164, 66, 0.4);
+    color: #1e1e2f;
+}
+
+/* Пустое состояние */
+.empty-services {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #252540;
+    border-radius: 20px;
+    border: 2px dashed #3a3a5c;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+.empty-services h3 {
+    color: #f5a442;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.empty-services p {
+    color: #c2c2d1;
+    margin-bottom: 2rem;
+}
+
+.btn-contact {
+    display: inline-block;
+    background: transparent;
+    color: #f5a442;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 2px solid #f5a442;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+    background: #f5a442;
+    color: #1e1e2f;
+    transform: translateY(-2px);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .services-hero {
+        padding: 1.5rem;
+    }
+
+    .services-title {
+        font-size: 2rem;
+    }
+
+    .services-subtitle {
+        font-size: 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Кнопка в hero-секции */
+.btn-hero-request {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #f5a442 0%, #f7c06b 100%);
+    color: #1e1e2f;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-request:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(245, 164, 66, 0.4);
+    color: #1e1e2f;
+}
+
+/* Кнопка в карточке услуги */
+.service-card-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #3a3a5c;
+    text-align: center;
+}
+
+.btn-order {
+    display: inline-block;
+    background: linear-gradient(135deg, #f5a442 0%, #f7c06b 100%);
+    color: #1e1e2f;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 164, 66, 0.4);
+    color: #1e1e2f;
+}

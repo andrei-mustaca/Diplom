@@ -1,0 +1,153 @@
+@model Services.ViewModel.CreateRequestViewModel
+
+@{
+    ViewData["Title"] = "Подать заявку";
+}
+<link rel="stylesheet" href="css/CreateStyle.css"/>
+<div class="request-page">
+    <!-- Заголовок -->
+    <div class="request-hero">
+        <h1 class="request-title">
+            <span class="title-icon">📝</span>
+            Подать заявку на обслуживание
+        </h1>
+        <p class="request-subtitle">
+            Заполните форму ниже, и мы оперативно свяжемся с вами для уточнения деталей.
+            Все поля обязательны для заполнения.
+        </p>
+    </div>
+
+    <!-- Форма -->
+    <div class="request-form-container">
+        <form asp-action="Create" method="post" class="request-form">
+            @Html.AntiForgeryToken()
+
+            <div class="form-grid">
+                <!-- Выбор услуги -->
+                <div class="form-group full-width">
+                    <label asp-for="WorkTypeId" class="form-label">
+                        <span class="label-icon">🛠️</span>
+                        Выберите тип услуги
+                    </label>
+                    <select asp-for="WorkTypeId" class="form-select" id="workTypeSelect">
+                        <option value="">-- Выберите услугу из списка --</option>
+                        @foreach (var workType in Model.WorkTypes)
+                        {
+                            <option value="@workType.Id" 
+                                    data-description="@workType.Description"
+                                    data-duration="@workType.StandartDuration">
+                                @workType.Name
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="WorkTypeId" class="validation-error"></span>
+                    <!-- Карточка с информацией о выбранной услуге -->
+                    <div class="service-info-card" id="serviceInfoCard" style="display: none;">
+                        <div class="service-info-header">
+                            <span class="info-icon">ℹ️</span>
+                            <span>Информация о выбранной услуге</span>
+                        </div>
+                        <p class="service-info-description" id="serviceDescription"></p>
+                        <div class="service-info-duration">
+                            <span class="duration-icon">⏱️</span>
+                            <span>Стандартное время выполнения: <strong id="serviceDuration"></strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Контактные данные -->
+                <div class="form-group">
+                    <label asp-for="PhoneClient" class="form-label">
+                        <span class="label-icon">📱</span>
+                        Контактный телефон
+                    </label>
+                    <input asp-for="PhoneClient" 
+                           class="form-input" 
+                           placeholder="+7 (999) 123-45-67"
+                           type="tel" />
+                    <span asp-validation-for="PhoneClient" class="validation-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EmailClient" class="form-label">
+                        <span class="label-icon">📧</span>
+                        Email для связи
+                    </label>
+                    <input asp-for="EmailClient" 
+                           class="form-input" 
+                           placeholder="example@email.com"
+                           type="email" />
+                    <span asp-validation-for="EmailClient" class="validation-error"></span>
+                </div>
+
+                <!-- Описание заявки -->
+                <div class="form-group full-width">
+                    <label asp-for="DescriptionRequest" class="form-label">
+                        <span class="label-icon">📋</span>
+                        Опишите вашу проблему или задачу
+                    </label>
+                    <textarea asp-for="DescriptionRequest" 
+                              class="form-textarea" 
+                              rows="5"
+                              placeholder="Опишите подробно, что случилось или какую услугу необходимо выполнить..."></textarea>
+                    <div class="textarea-footer">
+                        <span asp-validation-for="DescriptionRequest" class="validation-error"></span>
+                        <small class="char-counter">Минимум 10 символов</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кнопки -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    <span>🚀</span>
+                    <span>Отправить заявку</span>
+                </button>
+                <button type="reset" class="btn-reset">
+                    <span>🔄</span>
+                    <span>Очистить форму</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Информационный блок -->
+    <div class="info-blocks">
+        <div class="info-block">
+            <div class="info-block-icon">⚡</div>
+            <h3>Быстрая обработка</h3>
+            <p>Мы обрабатываем заявки в течение 15 минут в рабочее время</p>
+        </div>
+        <div class="info-block">
+            <div class="info-block-icon">🔒</div>
+            <h3>Конфиденциально</h3>
+            <p>Ваши данные используются только для связи с вами</p>
+        </div>
+        <div class="info-block">
+            <div class="info-block-icon">✅</div>
+            <h3>Гарантия качества</h3>
+            <p>Все работы выполняются сертифицированными специалистами</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Показать информацию о выбранной услуге
+        document.getElementById('workTypeSelect').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const serviceInfoCard = document.getElementById('serviceInfoCard');
+            const serviceDescription = document.getElementById('serviceDescription');
+            const serviceDuration = document.getElementById('serviceDuration');
+            
+            if (this.value) {
+                serviceDescription.textContent = selectedOption.getAttribute('data-description');
+                serviceDuration.textContent = selectedOption.getAttribute('data-duration') + ' мин.';
+                serviceInfoCard.style.display = 'block';
+            } else {
+                serviceInfoCard.style.display = 'none';
+            }
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

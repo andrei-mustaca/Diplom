@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Заявка отправлена";
+}
+<link rel="stylesheet" href="css/CreateStyle.css"/>
+<div class="success-page">
+    <div class="success-card">
+        <div class="success-icon">✅</div>
+        <h1 class="success-title">Заявка успешно отправлена!</h1>
+        <p class="success-message">@ViewBag.Message</p>
+        
+        <div class="success-details">
+            <p>Наш специалист свяжется с вами в ближайшее время.</p>
+            <p>Если у вас срочный вопрос, позвоните нам:</p>
+            <a href="tel:+78001234567" class="phone-link">📞 8 (800) 123-45-67</a>
+        </div>
+        
+        <div class="success-actions">
+            <a asp-controller="Home" asp-action="MainPage" class="btn-home">🏠 На главную</a>
+            <a asp-controller="Home" asp-action="Works" class="btn-services">🛠️ Все услуги</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+@using Domain.Enums
+@model Services.ViewModel.CompleteTaskViewModel
+@{
+    var task = ViewBag.TaskDetail as Services.ViewModel.WorkerTaskDetailViewModel;
+}
+
+@{
+    ViewData["Title"] = "Выполнение задачи";
+}
+
+<div class="task-detail-page">
+    <div class="page-navigation">
+        <a asp-action="Tasks" class="btn-back">
+            ← Назад к списку задач
+        </a>
+    </div>
+
+    @if (task != null)
+    {
+        <!-- Информация о задаче -->
+        <div class="task-info-card">
+            <div class="task-info-header priority-@task.Priority.ToString().ToLower()">
+                <h2>🛠️ @task.WorkTypeName</h2>
+                <span class="priority-badge priority-@task.Priority.ToString().ToLower()">
+                    @GetPriorityText(task.Priority)
+                </span>
+            </div>
+
+            <div class="task-info-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">📅 Дата заявки:</span>
+                        <span class="info-value">@task.RequestDate.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">⏱️ Плановое время:</span>
+                        <span class="info-value">@task.StandartDuration мин.</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">📱 Телефон клиента:</span>
+                        <span class="info-value">@task.PhoneClient</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">📧 Email клиента:</span>
+                        <span class="info-value">@task.EmailClient</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">🕐 Назначено:</span>
+                        <span class="info-value">@task.AssignedDate.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">📊 Статус:</span>
+                        <span class="info-value status-text">@task.Status</span>
+                    </div>
+                </div>
+
+                <div class="description-block">
+                    <h3>📋 Описание заявки:</h3>
+                    <p>@task.DescriptionRequest</p>
+                </div>
+            </div>
+        </div>
+
+        @if (task.HasReport)
+        {
+            <!-- Показываем существующий отчет -->
+            <div class="report-card">
+                <div class="report-header">
+                    <h3>✅ Отчет о выполнении</h3>
+                    <span class="completed-badge">Завершено</span>
+                </div>
+                <div class="report-body">
+                    <div class="report-description">
+                        <strong>Описание работы:</strong>
+                        <p>@task.Report.Description</p>
+                    </div>
+                    <div class="report-meta">
+                        <span>⏱️ Затрачено: @task.Report.Duration мин.</span>
+                        <span>📅 Завершено: @task.Report.ReportedAt?.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Форма завершения задачи -->
+            <div class="complete-form-card">
+                <h3>📝 Завершить задачу</h3>
+                
+                <form asp-action="CompleteTask" method="post" class="complete-form">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="RequestId" />
+                    <input type="hidden" asp-for="AssignmentId" />
+
+                    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="form-label">
+                            📋 Опишите выполненную работу
+                        </label>
+                        <textarea asp-for="Description" 
+                                  class="form-textarea" 
+                                  rows="5"
+                                  placeholder="Опишите, что было сделано, какие проблемы возникли, какие детали использовались..."></textarea>
+                        <span asp-validation-for="Description" class="validation-error"></span>
+                        <small class="char-counter">Минимум 10 символов</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Duration" class="form-label">
+                            ⏱️ Затраченное время (минут)
+                        </label>
+                        <input asp-for="Duration" 
+                               class="form-input" 
+                               type="number" 
+                               min="1" 
+                               max="480"
+                               placeholder="Введите количество минут" />
+                        <span asp-validation-for="Duration" class="validation-error"></span>
+                        <small>Плановое время: @task.StandartDuration мин.</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-complete">
+                        ✅ Завершить задачу
+                    </button>
+                </form>
+            </div>
+        }
+    }
+</div>
+
+@functions {
+    string GetPriorityText(Priority priority)
+    {
+        return priority switch
+        {
+            Priority.Low => "🟢 Низкий",
+            Priority.Medium => "🟡 Средний",
+            Priority.High => "🟠 Высокий",
+            Priority.Critical => "🔴 Критический",
+            _ => "⚪ Неизвестно"
+        };
+    }
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

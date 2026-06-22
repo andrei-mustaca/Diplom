@@ -1,0 +1,95 @@
+@model List<Domain.Models.WorkType>
+
+@{
+ViewData["Title"] = "Услуги";
+}
+<link rel="stylesheet" href="css/WorksStyle.css" />
+<div class="services-page">
+    <!-- Заголовок раздела -->
+    <div class="services-hero">
+        <h1 class="services-title">
+            <span class="title-icon">🛠️</span>
+            Наши услуги
+        </h1>
+        <p class="services-subtitle">
+            В этом разделе вы можете изучить доступные услуги и подать заявку на обслуживание.
+            Наши специалисты готовы оперативно выполнить любую задачу.
+        </p>
+        <a asp-controller="Home" asp-action="Create" class="btn-hero-request">
+            📝 Подать заявку
+        </a>
+    </div>
+
+    <!-- Сетка услуг -->
+    @if (Model != null && Model.Any())
+    {
+    <div class="services-grid">
+        @foreach (var service in Model)
+        {
+        <div class="service-card">
+            <div class="service-card-header">
+                <div class="service-icon">
+                    @GetServiceIcon(service.Name)
+                </div>
+                <h3 class="service-name">@service.Name</h3>
+            </div>
+
+            <div class="service-card-body">
+                <p class="service-description">
+                    @service.Description
+                </p>
+
+                <div class="service-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">⏱️</span>
+                        <span class="detail-text">
+                                    Стандартное время: <strong>@service.StandartDuration мин.</strong>
+                                </span>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        }
+    </div>
+    }
+    else
+    {
+    <div class="empty-services">
+        <div class="empty-icon">📭</div>
+        <h3>Услуги временно недоступны</h3>
+        <p>Пожалуйста, свяжитесь с нами для получения актуальной информации</p>
+        <a asp-controller="Home" asp-action="Contacts" class="btn-contact">📞 Связаться с нами</a>
+    </div>
+    }
+</div>
+
+@functions {
+string GetServiceIcon(string serviceName)
+{
+if (string.IsNullOrEmpty(serviceName))
+return "🔧";
+
+var name = serviceName.ToLower();
+
+if (name.Contains("газ") || name.Contains("плит"))
+return "🔥";
+if (name.Contains("вод") || name.Contains("сантех"))
+return "💧";
+if (name.Contains("электр") || name.Contains("свет"))
+return "⚡";
+if (name.Contains("отоп") || name.Contains("батар"))
+return "🌡️";
+if (name.Contains("ремонт") || name.Contains("строит"))
+return "🔨";
+if (name.Contains("убор") || name.Contains("клининг"))
+return "🧹";
+if (name.Contains("консульт") || name.Contains("совет"))
+return "💬";
+if (name.Contains("доставк") || name.Contains("курьер"))
+return "🚚";
+
+return "🔧";
+}
+}

@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Панель диспетчера";
+}
+
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <h1>📋 Панель диспетчера</h1>
+        <p class="welcome-text">Добро пожаловать, @ViewBag.UserName!</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <div class="card-icon">📝</div>
+            <h3>Заявки</h3>
+            <p>Просмотр и обработка входящих заявок</p>
+        </div>
+        <div class="dashboard-card">
+            <div class="card-icon">👷</div>
+            <h3>Бригады</h3>
+            <p>Распределение задач между рабочими</p>
+        </div>
+        <div class="dashboard-card">
+            <div class="card-icon">📊</div>
+            <h3>Мониторинг</h3>
+            <p>Отслеживание выполнения работ</p>
+        </div>
+    </div>
+</div>

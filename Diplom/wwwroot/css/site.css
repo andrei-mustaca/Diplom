@@ -1,0 +1,1304 @@
+/* === Тёмная тема для layout с увеличенными панелями === */
+
+/* ---------- Базовые настройки ---------- */
+body {
+    background-color: #1e1e2f;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Основной контейнер */
+.container {
+    background-color: transparent;
+    flex: 1;
+}
+
+/* ---------- Навигационная панель (УВЕЛИЧЕННАЯ) ---------- */
+.navbar {
+    padding: 1.2rem 0 !important; /* Увеличенный вертикальный отступ */
+    background-color: #252540 !important;
+    border-bottom: 2px solid #3a3a5c !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s ease;
+}
+
+/* Приколюха: свечение при наведении на navbar */
+.navbar:hover {
+    box-shadow: 0 6px 20px rgba(245, 164, 66, 0.3) !important;
+}
+
+/* Бренд с анимацией */
+.navbar-brand {
+    color: #f5a442 !important;
+    font-weight: 700;
+    font-size: 1.8rem !important; /* Увеличенный размер */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.brand-icon {
+    display: inline-block;
+    animation: bounce 2s infinite; /* Приколюха: подпрыгивающая иконка */
+    margin-right: 10px;
+}
+
+.brand-text {
+    background: linear-gradient(45deg, #f5a442, #f7c06b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Анимация подпрыгивания */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Ссылки меню (увеличенные) */
+.nav-link {
+    color: #c2c2d1 !important;
+    font-size: 1.1rem !important; /* Увеличенный шрифт */
+    padding: 0.8rem 1.2rem !important; /* Увеличенные отступы */
+    margin: 0 0.3rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Приколюха: эффект подчеркивания */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #f5a442;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 70%;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+    background: rgba(245, 164, 66, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-icon {
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
+/* Бургер-иконка */
+.navbar-toggler {
+    padding: 0.8rem;
+    border: 2px solid rgba(245, 164, 66, 0.3) !important;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    border-color: #f5a442 !important;
+    background: rgba(245, 164, 66, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    width: 2rem;
+    height: 2rem;
+}
+
+/* ---------- Основной контент ---------- */
+main {
+    background-color: #1e1e2f;
+    padding-top: 2rem;
+}
+
+/* ---------- Футер (УВЕЛИЧЕННЫЙ) ---------- */
+.footer {
+    background-color: #1a1a2a;
+    color: #9a9ab0;
+    border-top: 2px solid #3a3a5c !important;
+    padding: 2rem 0 !important; /* Увеличенный отступ */
+    margin-top: auto;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* Приколюха: свечение футера при наведении */
+.footer:hover {
+    box-shadow: 0 -6px 20px rgba(245, 164, 66, 0.3);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem; /* Увеличенный шрифт */
+}
+
+.footer-year {
+    color: #f5a442;
+    font-weight: bold;
+    font-size: 1.3rem;
+    animation: glow 2s infinite; /* Приколюха: пульсирующая дата */
+}
+
+/* Анимация свечения */
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px rgba(245, 164, 66, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(245, 164, 66, 0.8); }
+}
+
+.footer-separator {
+    color: #3a3a5c;
+    font-size: 1.2rem;
+}
+
+.footer-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-link {
+    color: #f5a442;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #f5a442;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    background: rgba(245, 164, 66, 0.1);
+}
+
+.footer-link:hover {
+    color: #1e1e2f;
+    background: #f5a442;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(245, 164, 66, 0.4);
+}
+
+/* ---------- Общие элементы ---------- */
+a {
+    color: #f5a442;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #f7c06b;
+    text-decoration: none;
+}
+
+/* Дополнительные приколюхи */
+::selection {
+    background: #f5a442;
+    color: #1e1e2f;
+}
+
+/* Стилизация скроллбара */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a2a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a3a5c;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f5a442;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem !important;
+    }
+}
+/* === Страница входа === */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.login-title {
+    color: #f5a442;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.login-subtitle {
+    color: #9a9ab0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.login-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    color: #f5a442;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    background: #1e1e2f;
+    border: 1px solid #3a3a5c;
+    color: #e0e0e0;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #f5a442;
+    box-shadow: 0 0 15px rgba(245, 164, 66, 0.2);
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #c2c2d1;
+}
+
+.validation-error {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+.validation-summary {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #ff4444;
+}
+
+.btn-login {
+    width: 100%;
+    background: linear-gradient(135deg, #f5a442 0%, #f7c06b 100%);
+    color: #1e1e2f;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 164, 66, 0.4);
+}
+
+.login-footer {
+    text-align: center;
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+.btn-back {
+    color: #f5a442;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.btn-back:hover {
+    color: #f7c06b;
+}
+
+/* === Страница WorkerEntry === */
+.worker-entry-page {
+    padding: 2rem 0;
+}
+
+.entry-hero {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, #252540 0%, #1e1e2f 100%);
+    border-radius: 20px;
+    border: 1px solid #3a3a5c;
+}
+
+.entry-icon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+.entry-title {
+    color: #f5a442;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.entry-description {
+    color: #c2c2d1;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.entry-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entry-info-card {
+    background: rgba(245, 164, 66, 0.1);
+    border: 1px solid #3a3a5c;
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.info-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.entry-info-card h3 {
+    color: #f5a442;
+    margin-bottom: 0.5rem;
+}
+
+.entry-info-card p {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+.entry-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-login-entry {
+    background: linear-gradient(135deg, #f5a442 0%, #f7c06b 100%);
+    color: #1e1e2f;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 164, 66, 0.4);
+}
+
+.btn-services-entry {
+    background: transparent;
+    color: #f5a442;
+    border: 2px solid #f5a442;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-services-entry:hover {
+    background: #f5a442;
+    color: #1e1e2f;
+}
+
+/* === Дашборды === */
+.dashboard-page {
+    padding: 2rem 0;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    color: #f5a442;
+    font-size: 2rem;
+}
+
+.welcome-text {
+    color: #c2c2d1;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.dashboard-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: #f5a442;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-card h3 {
+    color: #f5a442;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card p {
+    color: #9a9ab0;
+}
+
+@media (max-width: 768px) {
+    .entry-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .entry-actions {
+        flex-direction: column;
+    }
+}
+/* === Страница Access Denied === */
+.access-denied-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 2rem 0;
+}
+
+.access-denied-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.denied-icon {
+    font-size: 6rem;
+    margin-bottom: 1.5rem;
+    animation: deniedShake 0.5s ease-in-out;
+}
+
+@keyframes deniedShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.denied-title {
+    color: #ff4444;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.denied-message {
+    color: #c2c2d1;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.denied-info {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.denied-info p {
+    color: #ff4444;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.denied-reasons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.denied-reasons li {
+    color: #9a9ab0;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.denied-reasons li::before {
+    content: '•';
+    color: #ff4444;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.denied-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-logout {
+    background: transparent;
+    color: #ff4444;
+    border: 2px solid #ff4444;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.btn-logout:hover {
+    background: #ff4444;
+    color: #ffffff;
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #f5a442 0%, #f7c06b 100%);
+    color: #1e1e2f;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 164, 66, 0.4);
+    color: #1e1e2f;
+}
+
+@media (max-width: 768px) {
+    .access-denied-card {
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .denied-title {
+        font-size: 2rem;
+    }
+
+    .denied-actions {
+        flex-direction: column;
+    }
+
+    .btn-logout,
+    .btn-login {
+        width: 100%;
+        text-align: center;
+    }
+}
+/* === Страница диспетчера === */
+.dispatcher-page {
+    padding: 2rem 0;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    color: #f5a442;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-subtitle {
+    color: #9a9ab0;
+    margin-top: 0.5rem;
+}
+
+/* Карточки заявок */
+.requests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.request-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.request-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.request-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3a3a5c;
+}
+
+.badge-consultation {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+
+.badge-visit {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196f3;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+
+.request-body {
+    padding: 1.5rem;
+}
+
+.request-service,
+.request-time {
+    margin-bottom: 0.8rem;
+    color: #c2c2d1;
+}
+
+.request-service strong,
+.request-time strong {
+    color: #f5a442;
+}
+
+.request-description {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(30, 30, 47, 0.5);
+    border-radius: 10px;
+    color: #c2c2d1;
+}
+
+.request-contacts {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+.request-date {
+    color: #6b6b80;
+    font-size: 0.9rem;
+}
+
+.request-actions {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #3a3a5c;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-approve {
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-approve:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn-assign {
+    background: linear-gradient(135deg, #2196f3, #42a5f5);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-assign:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.btn-reject {
+    background: transparent;
+    color: #ff4444;
+    border: 1px solid #ff4444;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-reject:hover {
+    background: #ff4444;
+    color: white;
+}
+
+/* Модальные окна */
+.modal-content {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    color: #e0e0e0;
+}
+
+.modal-header {
+    border-bottom: 1px solid #3a3a5c;
+}
+
+.modal-title {
+    color: #f5a442;
+}
+
+.modal-footer {
+    border-top: 1px solid #3a3a5c;
+}
+
+/* Список работников */
+.workers-list {
+    padding: 1rem;
+}
+
+.workers-title {
+    color: #f5a442;
+    margin-bottom: 1rem;
+}
+
+.workers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.worker-card {
+    background: #1e1e2f;
+    border: 1px solid #3a3a5c;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.worker-card.worker-free {
+    border-color: #4caf50;
+}
+
+.worker-card.worker-busy {
+    opacity: 0.7;
+}
+
+.worker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.worker-header h5 {
+    color: #f5a442;
+    margin: 0;
+}
+
+.worker-info {
+    margin-bottom: 1rem;
+}
+
+.info-row {
+    margin-bottom: 0.5rem;
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+.worker-progress {
+    margin-bottom: 1rem;
+}
+
+.progress {
+    background: #3a3a5c;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #f5a442, #f7c06b);
+    border-radius: 4px;
+}
+
+.btn-assign-worker {
+    width: 100%;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-assign-worker:hover {
+    background: #66bb6a;
+}
+
+.priority-low .request-header {
+    border-left: 3px solid #4caf50;
+}
+
+.priority-medium .request-header {
+    border-left: 3px solid #ff9800;
+}
+
+.priority-high .request-header {
+    border-left: 3px solid #ff5722;
+}
+
+.priority-critical .request-header {
+    border-left: 3px solid #f44336;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+    .requests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .request-actions {
+        flex-direction: column;
+    }
+
+    .workers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* === Страница задач работника === */
+.worker-tasks-page {
+    padding: 2rem 0;
+}
+
+.task-count {
+    color: #f5a442;
+    font-weight: 600;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.task-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 12px;
+    display: flex;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.task-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(245, 164, 66, 0.1);
+}
+
+.task-status-indicator {
+    width: 4px;
+}
+
+.task-content {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.task-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.task-type h3 {
+    color: #f5a442;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.task-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.priority-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.task-description {
+    color: #c2c2d1;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.task-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.task-actions {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.btn-view {
+    background: #f5a442;
+    color: #1e1e2f;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-view:hover {
+    background: #f7c06b;
+    color: #1e1e2f;
+}
+
+/* Детали задачи */
+.task-detail-page {
+    padding: 2rem 0;
+}
+
+.task-info-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.task-info-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 164, 66, 0.1);
+}
+
+.task-info-header h2 {
+    color: #f5a442;
+    margin: 0;
+}
+
+.task-info-body {
+    padding: 1.5rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.info-label {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+.info-value {
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.description-block {
+    background: #1e1e2f;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.description-block h3 {
+    color: #f5a442;
+    margin-bottom: 1rem;
+}
+
+.description-block p {
+    color: #c2c2d1;
+    line-height: 1.6;
+}
+
+/* Форма завершения */
+.complete-form-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.complete-form-card h3 {
+    color: #f5a442;
+    margin-bottom: 1.5rem;
+}
+
+.form-textarea {
+    width: 100%;
+    background: #1e1e2f;
+    border: 1px solid #3a3a5c;
+    color: #e0e0e0;
+    padding: 1rem;
+    border-radius: 10px;
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+}
+
+.form-textarea:focus,
+.form-input:focus {
+    outline: none;
+    border-color: #f5a442;
+    box-shadow: 0 0 15px rgba(245, 164, 66, 0.2);
+}
+
+.btn-complete {
+    width: 100%;
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-complete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+/* Отчет */
+.report-card {
+    background: #252540;
+    border: 1px solid #4caf50;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.report-header {
+    padding: 1.5rem;
+    background: rgba(76, 175, 80, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-header h3 {
+    color: #4caf50;
+    margin: 0;
+}
+
+.completed-badge {
+    background: #4caf50;
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.report-body {
+    padding: 1.5rem;
+}
+
+.report-description {
+    margin-bottom: 1.5rem;
+    color: #c2c2d1;
+    line-height: 1.6;
+}
+
+.report-meta {
+    display: flex;
+    gap: 2rem;
+    color: #9a9ab0;
+}
+
+.status-text {
+    color: #2196f3;
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .task-card {
+        flex-direction: column;
+    }
+
+    .task-status-indicator {
+        width: 100%;
+        height: 4px;
+    }
+}

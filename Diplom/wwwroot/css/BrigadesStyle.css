@@ -1,0 +1,241 @@
+/* === Страница бригад === */
+.brigades-page {
+    padding: 2rem 0;
+}
+
+.workers-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.summary-value {
+    display: block;
+    color: #f5a442;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.summary-label {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+}
+
+.workers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.worker-card {
+    background: #252540;
+    border: 1px solid #3a3a5c;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.worker-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.worker-status-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.status-free {
+    background: linear-gradient(90deg, #4caf50, #66bb6a);
+}
+
+.status-occupied {
+    background: linear-gradient(90deg, #f44336, #ff5722);
+}
+
+.worker-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 1rem;
+}
+
+.worker-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #f5a442, #f7c06b);
+    color: #1e1e2f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.worker-name {
+    color: #f5a442;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.worker-body {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.worker-contacts {
+    margin-bottom: 1rem;
+}
+
+.contact-row {
+    color: #9a9ab0;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.worker-load {
+    margin-bottom: 1rem;
+}
+
+.load-header {
+    display: flex;
+    justify-content: space-between;
+    color: #c2c2d1;
+    margin-bottom: 0.5rem;
+}
+
+.progress {
+    background: #3a3a5c;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 0.3rem;
+}
+
+.progress-bar {
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.worker-stats {
+    margin-bottom: 1rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(58, 58, 92, 0.3);
+    font-size: 0.9rem;
+}
+
+.stat-label {
+    color: #9a9ab0;
+}
+
+.stat-value {
+    color: #c2c2d1;
+    font-weight: 500;
+}
+
+.current-tasks {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #3a3a5c;
+}
+
+.current-tasks h5 {
+    color: #f5a442;
+    margin-bottom: 0.8rem;
+}
+
+.task-item {
+    background: #1e1e2f;
+    border-radius: 8px;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid #f5a442;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.task-type {
+    color: #c2c2d1;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.task-description {
+    color: #9a9ab0;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+}
+
+.task-time {
+    color: #6b6b80;
+    font-size: 0.8rem;
+}
+
+.btn-more {
+    color: #f5a442;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.worker-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #3a3a5c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-details {
+    background: #f5a442;
+    color: #1e1e2f;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+    background: #f7c06b;
+    color: #1e1e2f;
+}
+
+.remaining-time {
+    font-size: 0.85rem;
+    color: #9a9ab0;
+}
+
+@media (max-width: 768px) {
+    .workers-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .workers-grid {
+        grid-template-columns: 1fr;
+    }
+}
