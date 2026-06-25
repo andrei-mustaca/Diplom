@@ -29,23 +29,8 @@
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="AdminDashboard">
-                                    <span class="nav-icon">⚙️</span> Админ-панель
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">
-                                    <span class="nav-icon">👥</span> Пользователи
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">
-                                    <span class="nav-icon">📊</span> Отчеты
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">
-                                    <span class="nav-icon">📋</span> Все заявки
+                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="Index">
+                                    <span class="nav-icon">⚙️</span> Панель администратора
                                 </a>
                             </li>
                         }
@@ -67,11 +52,7 @@
                                     <span class="nav-icon">👷</span> Бригады
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">
-                                    <span class="nav-icon">📊</span> Статистика
-                                </a>
-                            </li>
+                            
                         }
                         
                         @if (User.IsInRole("Worker"))

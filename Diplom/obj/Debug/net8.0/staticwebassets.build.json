@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Sfu7dKOi50nRMxIlcq1rSGS0xYRvUIWXBiz/Uyzvk9E=",
+  "Hash": "ymLFgicGfnJCW/30I/byd0dk9zix/1rdVPxJ6/WLjc0=",
   "Source": "Diplom",
   "BasePath": "_content/Diplom",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\AboutPageStyle.css"
+    },
+    {
+      "Identity": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\css\\AdminStyle.css",
+      "SourceId": "Diplom",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\",
+      "BasePath": "_content/Diplom",
+      "RelativePath": "css/AdminStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\AdminStyle.css"
     },
     {
       "Identity": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\css\\BrigadesStyle.css",
@@ -205,6 +224,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\js\\admin.js",
+      "SourceId": "Diplom",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\",
+      "BasePath": "_content/Diplom",
+      "RelativePath": "js/admin.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
     },
     {
       "Identity": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\js\\site.js",

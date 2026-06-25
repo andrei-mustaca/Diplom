@@ -1,0 +1,58 @@
+@model Domain.Models.WorkType
+
+@{
+    ViewData["Title"] = "Редактирование типа работы";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/AdminStyle.css" />
+
+<div class="admin-page">
+    <div class="admin-hero" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c6b9e 100%);">
+        <div class="admin-header-content">
+            <div>
+                <h1 class="admin-title">✏️ Редактирование типа работы</h1>
+                <p class="admin-subtitle">Изменение информации о типе работы</p>
+            </div>
+            <a asp-action="Index" class="btn-back" style="color:white;background:rgba(255,255,255,0.2);padding:8px 16px;border-radius:8px;text-decoration:none;">← Назад</a>
+        </div>
+    </div>
+
+    <div style="max-width:600px;margin:0 auto;background:white;padding:30px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-error">@TempData["ErrorMessage"]</div>
+        }
+
+        <form asp-action="EditWorkType" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+            <div asp-validation-summary="ModelOnly" class="alert alert-error"></div>
+
+            <div class="form-group">
+                <label asp-for="Name">Название <span style="color:red;">*</span></label>
+                <input asp-for="Name" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Описание</label>
+                <textarea asp-for="Description" class="form-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StandartDuration">Время (мин) <span style="color:red;">*</span></label>
+                <input asp-for="StandartDuration" class="form-input" type="number" min="1" max="480" required />
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:20px;">
+                <button type="submit" class="btn-save" style="flex:1;">💾 Сохранить</button>
+                <a asp-action="Index" class="btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -17,10 +17,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     ));
 
 // Email Service
+builder.Services.AddMemoryCache();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<IDispatcherService, DispatcherService>();
 builder.Services.AddScoped<IWorkerService, WorkerService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 // Регистрация IHttpContextAccessor для работы с HttpContext в сервисах
 builder.Services.AddHttpContextAccessor();

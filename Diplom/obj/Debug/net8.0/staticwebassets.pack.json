@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\AboutPageStyle.css"
     },
     {
+      "Id": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\css\\AdminStyle.css",
+      "PackagePath": "staticwebassets\\css\\AdminStyle.css"
+    },
+    {
       "Id": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\css\\BrigadesStyle.css",
       "PackagePath": "staticwebassets\\css\\BrigadesStyle.css"
     },
@@ -35,6 +39,10 @@
     {
       "Id": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
     },
     {
       "Id": "C:\\Users\\PendalfSeri\\Desktop\\Учеба\\Диплом\\Diplom\\Diplom\\wwwroot\\js\\site.js",

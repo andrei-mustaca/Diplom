@@ -15,3 +15,4 @@ C:\Users\PendalfSeri\Desktop\Учеба\Диплом\Diplom\Services\obj\Debug\n
 C:\Users\PendalfSeri\Desktop\Учеба\Диплом\Diplom\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\PendalfSeri\Desktop\Учеба\Диплом\Diplom\Services\obj\Debug\net8.0\Services.genruntimeconfig.cache
 C:\Users\PendalfSeri\Desktop\Учеба\Диплом\Diplom\Services\obj\Debug\net8.0\ref\Services.dll
+C:\Users\PendalfSeri\Desktop\Учеба\Диплом\Diplom\Services\obj\Debug\net8.0\Services.sourcelink.json

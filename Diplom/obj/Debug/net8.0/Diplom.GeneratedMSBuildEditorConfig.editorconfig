@@ -18,6 +18,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\PendalfSeri\Desktop\Учеба\Диплом\Diplom\Diplom
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Admin/AddUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Admin/AddWorkType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkV29ya1R5cGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Admin/ConfirmUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ29uZmlybVVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Admin/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Admin/EditWorkType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFdvcmtUeXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/PendalfSeri/Desktop/Учеба/Диплом/Diplom/Diplom/Views/Dispatcher/Brigades.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGF0Y2hlclxCcmlnYWRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

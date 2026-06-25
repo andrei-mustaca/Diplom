@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Domain.Enums;
 
 namespace Domain.Models;
@@ -10,6 +12,7 @@ public class User
     public string PhoneNumber { get; set; }
     public string Password { get; set; }
     public UserRole Role { get; set; }
+    
     
     public List<RequestAssigment> RequestAssigments { get; set; }
     public List<WorkReport> WorkReports { get; set; }
