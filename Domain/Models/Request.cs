@@ -9,7 +9,6 @@ public class Request
     public string PhoneClient { get; set; }
     public string EmailClient { get; set; }
     public string DescriptionRequest { get; set; }
-    
     public Guid WorkTypeId { get; set; }
     public Priority Priority { get; set; }
     
